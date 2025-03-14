@@ -1,5 +1,5 @@
 data:
-  data_path: /cpfs01/projects-SSD/cfff-4a8d9af84f66_SSD/public/zhengkai/data/era5/l13.h06.p100/extrat_from_official/pressure_level/
+  data_path: /mnt/pressure_level/
   in_frames: 2
   out_frames: 12
   datetimes_train: ['2018010100', '2018020100']
