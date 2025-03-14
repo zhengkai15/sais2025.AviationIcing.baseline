@@ -1,0 +1,74 @@
+data:
+  data_path: /cpfs01/projects-SSD/cfff-4a8d9af84f66_SSD/public/zhengkai/data/era5/l13.h06.p100/extrat_from_official/pressure_level/
+  in_frames: 2
+  out_frames: 12
+  datetimes_train: ['2018010100', '2018020100']
+  datetimes_valid: ['2018020100', '2018030100']
+  datetimes_test: ['2018020100', '2018030100'] 
+  selected_levels: [50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 850, 925, 1000]
+
+
+seed:
+  random_seed: 42
+
+exp:
+  dir: "./exp/debug"
+  best_model_path: null
+
+optim:
+  name: "adamw"
+  weight_decay: 0.1 
+
+lr:
+  value: 0.0001
+  scheduler:
+    name: "ReduceLROnPlateau" # CosineAnnealingLR ReduceLROnPlateau WarmupReduceLROnPlateau WarmupCosineAnnealingLR
+    mode: "min"
+    monitor: "task_metric"
+    threshold: 0.0004
+    factor: 0.5
+    patience: 5
+    min_lr: 0.00001
+
+train:
+  batch_size: 1
+  start_epoch: 0
+  num_epochs: 100
+  num_workers: 16
+  visualize: false
+  save_results: false
+  shuffle: true
+  early_stopping:
+    patience: 20
+    monitor: null
+    mode: "min"
+  iter_num: 1824 
+  save_epoch_model: false
+  gradient_clipping:
+    enabled: true
+    method: 'norm'
+    clip_value:
+      min: -1.0
+      max: 1.0
+    max_norm: 1.0
+  loss_threshold: 200
+
+infer:
+  batch_size: 1
+  num_workers: 4
+  shuffle: true
+  iter_num: 200
+
+loss:
+  name: "mse"
+
+model:
+  in_variable_num: 117
+  in_times_num: 2
+  out_variable_num: 117
+  out_times_num: 12
+  name: "unet" 
+
+
+env:
+  gpus_id: "0"
