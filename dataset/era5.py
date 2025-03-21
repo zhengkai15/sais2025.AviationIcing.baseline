@@ -104,3 +104,4 @@ if __name__ == "__main__":
     era5_dataset = ERA5(config, flag="train")
     dataloader = DataLoader(era5_dataset, batch_size=16, num_workers=16, shuffle=False)
     print(era5_dataset[0])
+
