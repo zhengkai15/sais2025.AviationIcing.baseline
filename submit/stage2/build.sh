@@ -1,5 +1,5 @@
 #!/bin/bash
 
 # 以下命令作为打包示例，实际使用时请修改为自己的镜像地址, 建议每次提交前完成版本修改重新打包
-docker build  -t ?? . 
-docker push ??
+docker build  -t registry.cn-shanghai.aliyuncs.com/sais-race2024/sais2025aviation:0.1 . 
+docker push registry.cn-shanghai.aliyuncs.com/sais-race2024/sais2025aviation:0.1

@@ -31,7 +31,8 @@ def inference(file_list):
         input_tensor = torch.load(file_name)
         # output = model(input_tensor)
         print(input_tensor.shape)
-        output = input_tensor[..., c_index, 35:80+1, 70:140+1].clone()
+        last_timestep = input_tensor[:, -1:, c_index, 35:81, 70:141]  # 提取最后一个时间步 [B, 1, C, H, W]
+        output = last_timestep.repeat_interleave(12, dim=1)  # 在T维度上重复12次
         print(output.shape)
         save_path = file_name.replace(base_name, save_name)
         print(save_path)
